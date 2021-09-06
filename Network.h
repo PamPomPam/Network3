@@ -71,7 +71,7 @@ struct Conv : Layer {
 	Tesseract w_updates;
 	Vector b_updates;
 
-	Conv(Activation* input_, int n_filters_, int f_size_, int s_, int padding_ = 2, float mean = 0, float stddev = 1);
+	Conv(Activation* input_, int n_filters_, int f_size_, int s_, int padding_ = 0, float mean = 0, float stddev = 1);
 	void FFW() override;
 	void Backprop() override;
 	void Update(float alpha) override;

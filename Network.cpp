@@ -239,15 +239,16 @@ void Conv::Backprop() {
 	}
 
 	// inputs only!
+	cerr << input_cols;
 	for (d = 0; d < input_depth; d++) {
 		for (j = 0; j < input_rows; j++) {
 			for (i = 0; i < input_cols; i++) {
 
 				//actual
 				sum = 0;
-				for (ja = j / s; ja > (j - f_size) / s; j--) {
+				for (ja = j / s; ja > (j - f_size) / s; ja--) {
 					j_ = j - s * ja;
-					for (ia = i / s; ia > (i - f_size) / s; i--) {
+					for (ia = i / s; ia > (i - f_size) / s; ia--) {
 						i_ = i - s * ia;
 						for (n = 0; n < output_depth; n++) {
 							sum += weights.at(j_, i_, d, n) * output.at(ja, ia, n);
@@ -353,7 +354,7 @@ void Pool::Update(float alpha) {} // empty
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Network::Network(string design, int input_size_, int input_rows_, int input_cols_, int input_depth_) :
-	input(input_size_, input_size_/input_cols_/input_depth_, input_cols_, input_depth_), input_size(input_size_), input_rows(input_rows_), input_cols(input_cols_), input_depth(input_depth_) {
+	input(input_size_, input_rows_, input_cols_, input_depth_), input_size(input_size_), input_rows(input_rows_), input_cols(input_cols_), input_depth(input_depth_) {
 	istringstream iss(design);
 	string temp;
 	n_layers = 0;

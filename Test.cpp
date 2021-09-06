@@ -58,7 +58,7 @@ void MNIST_test() {
     f1.close();
 
 
-    Network mynet("conv 10 4 2 dense 10 sigm", 784);
+    Network mynet("conv 10 4 2 dense 10 sigm", 784, 28, 28, 1);
     mynet.Test_accuracy(test_data, test_labels, 10000);
     for (int i = 0; i < 30; i++) {
         tic();
